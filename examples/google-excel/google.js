@@ -63,13 +63,19 @@ key(suite);
 
 // Load text suite
 //var file = fs.readFileSync('suite.txt', 'utf8');
-var fileName = './suite.xlsx'
+//var fileName = 'suite.xlsx';
+//key(key.formats.text.decode(file));
+
+// Load text suite
+var fileName = 'suite.xlsx';
 key(key.formats.excel.decode(fileName));
+
 
 // Inject webdriver
 key.injector(key.webdriver);
 
 console.log();
+
 
 // Run the keyword
 key.run("Test Google Search").then(function() {

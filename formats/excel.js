@@ -4,10 +4,11 @@ var _ = require('underscore');
 var helpers = require('../lib/helpers');
 var validators = require('../lib/validators');
 var parseXlsx = require('excel');
+var deasync = require('deasync');
 
 var not = helpers.not;
 
-//var file = "./suite.xlsx";
+var file = "./suite.xlsx";
 
 
 function trimLines(line) {
@@ -60,11 +61,12 @@ function parseParams(keys) {
 
 function decode(fileName) {
 
+    var keys;
 	parseXlsx(fileName, function(err, data) {
 		if(err) throw err;
 		// data is an array of arrays
 
-		var keys = _(data).chain()
+		keys = _(data).chain()
 					.flatten()
 					.map(trimLines)
 					.reduce(splitByEmptyLines, [[]])
@@ -72,14 +74,20 @@ function decode(fileName) {
 					.reduce(createMap, {})
 					.value();
 
-      	console.log(keys);
-
-
-  		return keys;
+      	//console.log(keys);
+        //return keys;
 	});
+
+    while(keys === undefined) {
+      require('deasync').runLoopOnce();
+    }
+
+    console.log(keys);
+
+    return JSON.stringify(keys);
 }
 
-//decode(file);
+decode(file);
 
 module.exports = {
     decode: decode

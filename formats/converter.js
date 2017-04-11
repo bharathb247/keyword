@@ -9,6 +9,7 @@
 var _ = require('underscore');
 var fs = require('fs');
 var text = require('./text');
+var excel = require('./excel');
 
 var operations = {
 	"json-to-text": function(content) {
@@ -16,6 +17,9 @@ var operations = {
 	},
 	"text-to-json" : function(content) {
 		return text.decode(content);
+	},
+	"excel-to-json" : function(fileName) {
+		return excel.decode(fileName);
 	}
 };
 
@@ -67,8 +71,16 @@ if(fs.existsSync(dest)) {
 	throw "Destination file " + dest + " exists already! I'm not going to overwrite it";
 }
 
-var srcFileContent = fs.readFileSync(src, 'utf8');
-var encoded = operations[oper](srcFileContent);
+var encoded;
+if(oper == "excel-to-json") {
+	//just pass the file name
+	encoded = operations[oper](src);
+} else {
+
+	var srcFileContent = fs.readFileSync(src, 'utf8');
+	encoded = operations[oper](srcFileContent);
+}
+
 
 fs.writeFileSync(dest, encoded);
 
