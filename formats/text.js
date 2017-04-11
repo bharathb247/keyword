@@ -62,6 +62,9 @@ function decode(content) {
         .reduce(createMap, {})
         .value();
 
+        console.log(keys);
+        
+
     return keys;
 }
 
@@ -73,7 +76,7 @@ function indent(num, char) {
 }
 
 function groupKeys(keys) {
-    var groupped = keys.reduce(function(memo, keywordPart) {
+    var groupped = _(keys).reduce(function(memo, keywordPart) {
         if(_.isArray(keywordPart) || validators.isReturn(keywordPart)) {
             _.last(memo).push(keywordPart);
         } else {

@@ -62,8 +62,9 @@ var suite = {
 key(suite);
 
 // Load text suite
-var file = fs.readFileSync('suite.txt', 'utf8');
-key(key.formats.text.decode(file));
+//var file = fs.readFileSync('suite.txt', 'utf8');
+var fileName = './suite.xlsx'
+key(key.formats.excel.decode(fileName));
 
 // Inject webdriver
 key.injector(key.webdriver);

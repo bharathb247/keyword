@@ -13,6 +13,9 @@ var text = require('./text');
 var operations = {
 	"json-to-text": function(content) {
 		return text.encode(JSON.parse(content));
+	},
+	"text-to-json" : function(content) {
+		return text.decode(content);
 	}
 };
 

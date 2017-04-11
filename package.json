@@ -25,9 +25,11 @@
     "node": ">= 0.6.0"
   },
   "dependencies": {
-    "underscore": "1.4.x",
+    "excel": "^0.1.7",
+    "gherkin": "^4.1.1",
+    "patjs": "~0.1.3",
     "selenium-node-webdriver": "*",
-    "patjs": "~0.1.3"
+    "underscore": "1.4.x"
   },
   "scripts": {
     "test": "mocha"

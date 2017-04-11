@@ -12,7 +12,7 @@ var suite = {
     /***** The main test case *****/
     "Test Google Search": [
         "Google Search For", ["keyword driven testing"], "=> $searchResult",
-        "Should Equal", ["$searchResult", "Keyword-driven testing - Wikipedia, the free encyclopedia"]
+        "Should Equal", ["$searchResult", "Keyword-driven testing - Wikipedia"]
     ],
 
     /***** Define high-level keywords ******/
