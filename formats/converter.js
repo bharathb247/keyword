@@ -10,6 +10,7 @@ var _ = require('underscore');
 var fs = require('fs');
 var text = require('./text');
 var excel = require('./excel');
+var util = require("util");
 
 var operations = {
 	"json-to-text": function(content) {
@@ -75,6 +76,9 @@ var encoded;
 if(oper == "excel-to-json") {
 	//just pass the file name
 	encoded = operations[oper](src);
+
+	console.log("------------------- encoded");
+	console.log(encoded);
 } else {
 
 	var srcFileContent = fs.readFileSync(src, 'utf8');
@@ -82,6 +86,6 @@ if(oper == "excel-to-json") {
 }
 
 
-fs.writeFileSync(dest, encoded);
+fs.writeFileSync(dest, util.inspect(encoded), 'utf8');
 
 console.log('Successfully wrote result to file ' + dest);

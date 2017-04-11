@@ -70,7 +70,6 @@ key(suite);
 var fileName = 'suite.xlsx';
 key(key.formats.excel.decode(fileName));
 
-
 // Inject webdriver
 key.injector(key.webdriver);
 

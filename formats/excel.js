@@ -8,7 +8,7 @@ var deasync = require('deasync');
 
 var not = helpers.not;
 
-var file = "./suite.xlsx";
+//var file = "./suite.xlsx";
 
 
 function trimLines(line) {
@@ -73,21 +73,16 @@ function decode(fileName) {
 					.filter(not(_.isEmpty))
 					.reduce(createMap, {})
 					.value();
-
-      	//console.log(keys);
-        //return keys;
-	});
+    });
 
     while(keys === undefined) {
       require('deasync').runLoopOnce();
     }
 
-    console.log(keys);
-
-    return JSON.stringify(keys);
+    return keys;
 }
 
-decode(file);
+//decode(file);
 
 module.exports = {
     decode: decode
