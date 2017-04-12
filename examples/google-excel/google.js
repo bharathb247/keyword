@@ -75,7 +75,6 @@ key.injector(key.webdriver);
 
 console.log();
 
-
 // Run the keyword
 key.run("Test Google Search").then(function() {
     console.log("\nDone.\n");

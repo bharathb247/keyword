@@ -66,7 +66,19 @@ function decode(fileName) {
 		if(err) throw err;
 		// data is an array of arrays
 
-		keys = _(data).chain()
+        var formattedData = [];
+        var formattedDataKey;
+        _.map(data, function(d) {
+            if(d[0] != '') {
+                //its the key
+                formattedData.push(d[0]);
+                formattedData.push(d[1]);
+            } else {
+                formattedData.push(d[1]);
+            }
+        });      
+
+		keys = _(formattedData).chain()
 					.flatten()
 					.map(trimLines)
 					.reduce(splitByEmptyLines, [[]])
